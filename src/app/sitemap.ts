@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+
+export const dynamic = "force-static";
 import { getSortedArticlesMetadata } from '@/logic/cms-logic';
 
 export default function sitemap(): MetadataRoute.Sitemap {
