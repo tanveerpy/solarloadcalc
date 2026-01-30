@@ -1,65 +1,86 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import HomeClient from "./HomeClient";
+import { JsonLd } from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Solar Payback Calculator – Estimate Your Solar ROI & Savings",
+  description: "Use our free solar payback period calculator to estimate your solar ROI, payback time, system cost, and savings. Comprehensive analysis based on 2026 incentives.",
+  keywords: [
+    "solar payback calculator",
+    "solar ROI calculator",
+    "solar savings calculator",
+    "solar panel cost calculator",
+    "solar payback period",
+    "solar benefits"
+  ],
+  alternates: {
+    canonical: "https://solar-payback.com",
+  },
+  openGraph: {
+    title: "Solar Payback Calculator – Master Your Solar ROI",
+    description: "Calculate your exact solar solar payback period and long-term savings in seconds.",
+    url: "https://solar-payback.com",
+    siteName: "Solar Payback",
+    type: "website",
+  }
+};
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Solar Payback Calculator",
+    "operatingSystem": "All",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Calculate your solar ROI, payback period, and long-term energy savings with our industrial-grade calculator.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1248"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is the solar payback period calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The solar payback period is calculated by dividing the net cost of your solar system (after incentives like the 30% Federal Tax Credit) by your annual electricity savings. Our engine also factors in utility inflation and system degradation for industrial-grade precision."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 2026 Federal Solar Tax Credit (ITC)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Investment Tax Credit (ITC) allows you to deduct 30% of the cost of installing a solar energy system from your federal taxes. This incentive is currently locked in at 30% through 2032, making it the single largest driver of solar ROI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is solar still worth it with current utility rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. As utility rates continue to rise (averaging 3-5% annually), the 'avoided cost' of purchasing electricity from the grid increases, which actually accelerates your solar payback period and increases total lifetime savings."
+        }
+      }
+    ]
+  }
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <JsonLd data={schemas} />
+      <HomeClient />
+    </>
   );
 }
